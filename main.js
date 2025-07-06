@@ -193,20 +193,11 @@ function PrintResponse (textoUsuario)
     puter.ai.chat(contextMessage)
         .then(response => {
             output.textContent = response;
-    });    
+            copyToClipboard(output.textContent) // --> arreglar
+    }); 
+    
 }
 
-function copyToClipboard() {
-  const narrativeText = document.querySelector(".narrative-text")
-  if (narrativeText) {
-    navigator.clipboard.writeText(narrativeText.textContent).then(() => {
-      const btn = document.querySelector(".copy-button")
-      const originalHTML = btn.innerHTML
-      btn.innerHTML =
-        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"></polyline></svg>'
-      setTimeout(() => {
-        btn.innerHTML = originalHTML
-      }, 2000)
-    })
-  }
-}
+function copyToClipboard(textToCopy) {
+    navigator.clipboard.writeText(textToCopy)
+}   
