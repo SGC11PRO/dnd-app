@@ -10,14 +10,26 @@ const estadoPartida = {
     {
       nombre: "Ivor Kulenov",
       clase: "Mago",
-      nivel: 4,
+      nivel: 3,
       hp: 19,
       hechizos: [
-        { nombre: "Rayo Escarcha", bonificacionAtaque: 5, dadosDano: "1d8" },
-        { nombre: "Misil Mágico", bonificacionAtaque: 0, dadosDano: "3d4 + 3" }
+        { nombre: "Luces Danzantes", bonificacionAtaque: 4, dadosDano: "0" },
+        { nombre: "Mano de Mago", bonificacionAtaque: 4, dadosDano: "" },
+        { nombre: "Rayo Escarcha", bonificacionAtaque: 4, dadosDano: "1d8" },
+        { nombre: "Detectar Magia", bonificacionAtaque: 4, dadosDano: "0" },
+        { nombre: "Disfrazarse", bonificacionAtaque: 4, dadosDano: "0" },
+        { nombre: "Encontrar Familiar", bonificacionAtaque: 4, dadosDano: "0" },
+        { nombre: "Proyectil Mágico", bonificacionAtaque: 4, dadosDano: "1d4 + 1" },
+        { nombre: "Abrir", bonificacionAtaque: 4, dadosDano: "0" },
+        { nombre: "Inmovilizar Persona", bonificacionAtaque: 4, dadosDano: "0" }
       ],
 
-      armas: [], // en caso de que tenga una daga, por ejemplo
+      armas: [
+        { nombre: "Bastón", bonificacionAtaque: 2, dadosDano: "1d6" },
+        { nombre: "Arco Corto", bonificacionAtaque: 1, dadosDano: "1d6 + 1" },
+        { nombre: "Daga", bonificacionAtaque: 2, dadosDano: "1d4" },
+
+      ], // en caso de que tenga una daga, por ejemplo
       imagen: "/images/ivor.png"
     },
     {
@@ -26,7 +38,8 @@ const estadoPartida = {
       nivel: 3,
       hp: 33,
       armas: [
-        { nombre: "Hacha Enana", bonificacionAtaque: 6, dadosDano: "2d6 + 2" },
+        { nombre: "Ballesta Ligera", bonificacionAtaque: 3, dadosDano: "1d8 + 1" },
+        { nombre: "Arco Corto", bonificacionAtaque: 3, dadosDano: "1d6 + 1" },
         { nombre: "Espada corta", bonificacionAtaque: 5, dadosDano: "1d6 + 3" }
       ],
       hechizos: [],
@@ -39,9 +52,16 @@ const estadoPartida = {
       hp: 29,
       armas: [
         { nombre: "Arco Largo", bonificacionAtaque: 4, dadosDano: "1d8 + 2" },
-        { nombre: "Espada larga", bonificacionAtaque: 5, dadosDano: "1d8 + 3" }
+        { nombre: "Daga", bonificacionAtaque: 4, dadosDano: "1d4 + 2" },
+        { nombre: "Espada Corta", bonificacionAtaque: 4, dadosDano: "1d6 + 2" }
       ],
-      hechizos: [],
+      hechizos: [
+        { nombre: "Filo Atronador", bonificacionAtaque: 3, dadosDano: "1d8" },
+        { nombre: "Curar Heridas", bonificacionAtaque: 3, dadosDano: "0" },
+        { nombre: "Favor Divino", bonificacionAtaque: 3, dadosDano: "1d4" },
+        { nombre: "Golpe Apresador", bonificacionAtaque: 3, dadosDano: "1d6" },
+        { nombre: "Hablar con los Animales", bonificacionAtaque: 3, dadosDano: "0" },
+      ],
       imagen: "/images/erevan.png"
     }
   ],
