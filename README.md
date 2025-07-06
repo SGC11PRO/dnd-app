@@ -18,8 +18,8 @@ This project is an interactive, voice-enabled web tool that helps narrate epic c
 1. **Clone the repo**
 
 ```bash
-git clone https://github.com/yourusername/dd-voice-combat-narrator.git
-cd dd-voice-combat-narrator
+git clone https://github.com/SGC11PRO/dnd-app.git
+cd dnd-app
 ```
 
 2. Open the `index.html` on your browser
