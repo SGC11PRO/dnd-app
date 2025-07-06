@@ -147,7 +147,7 @@ function PrintResponse (textoUsuario)
 
     puter.ai.chat(contextMessage)
         .then(response => {
-            output.textContent = response
+            output.textContent = response;
 
 x        });
 }
