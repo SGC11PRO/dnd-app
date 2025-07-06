@@ -1,77 +1,124 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D&D Encounter Narrator</title>
+    <title>Encounter Master</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="globals.css">
 </head>
-
 <body>
-    <div class="container">
+    <div class="app">
         <header class="header">
-            <h1 class="title">D&D Encounter Narrator</h1>
-            <p class="subtitle">Let AI bring your combat to life</p>
+            <div class="header-content">
+                <h1 class="app-title">Encounter Master</h1>
+                <p class="app-subtitle">AI-Powered Combat Narratives</p>
+            </div>
         </header>
 
-        <main class="main-content">
-            <div class="form-card">
-                <div class="form-section">
-                    <h2 class="section-title">Character Setup</h2>
-                    
+        <main class="main">
+            <!-- Character Setup -->
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Character</h2>
+                </header>
+                
+                <div class="card-content">
+                    <div class="character-section">
+                        <div class="character-avatar">
+                            <img src="/images/placeholder.png" alt="Character" class="avatar-image" id="imagen-personaje">
+                        </div>
+                        <div class="character-details">
+                            <select id="personaje" class="select" onchange="actualizarDatos()">
+                                <option value=""></option>
+                            </select>
+                            <div class="character-info" id="character-info">
+                                <span class="info-item" id="clase-personaje">—</span>
+                                <span class="info-separator">•</span>
+                                <span class="info-item">Level <span id="nivel-personaje">—</span></span>
+                                <span class="info-separator">•</span>
+                                <span class="info-item"><span id="hp-personaje">—</span> HP</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <label for="personaje" class="form-label">Character</label>
-                        <select id="personaje" class="form-select" onchange="actualizarArmas()">
+                        <label class="label">Weapon / Spell</label>
+                        <select id="arma" class="select">
+                            <option value="">Choose weapon or spell</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="arma" class="form-label">Weapon/Spell</label>
-                        <select id="arma" class="form-select"></select>
+                        <label class="label">Target</label>
+                        <select id="enemigo" class="select">
+                            <option value="">Select enemy</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Combat Resolution -->
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Combat</h2>
+                </header>
+                
+                <div class="card-content">
+                    <div class="dice-grid">
+                        <div class="form-group">
+                            <label class="label">Attack Roll</label>
+                            <input id="ataque" type="number" class="input" placeholder="1-20" min="1" max="30">
+                        </div>
+                        <div class="form-group">
+                            <label class="label">Damage</label>
+                            <input id="dano" type="number" class="input" placeholder="0+" min="0">
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="enemigo" class="form-label">Target Enemy</label>
-                        <select id="enemigo" class="form-select"></select>
-                    </div>
-                </div>
-
-                <div class="form-section">
-                    <h2 class="section-title">Roll Results</h2>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="ataque" class="form-label">Attack Roll</label>
-                            <input id="ataque" type="number" class="form-input" placeholder="d20 + modifier">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dano" class="form-label">Damage</label>
-                            <input id="dano" type="number" class="form-input" placeholder="Total damage">
+                        <label class="label">Action Description</label>
+                        <div class="input-group">
+                            <textarea id="input" class="textarea" placeholder="Describe your character's action..."></textarea>
+                            <button onclick="empezarEscucha()" class="voice-button" title="Voice Input">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-section">
-                    <h2 class="section-title">Action Description</h2>
-                    
-                    <div class="input-group">
-                        <input type="text" id="input" class="form-input" placeholder="Describe your action...">
-                        <button onclick="empezarEscucha()" class="btn btn-secondary" title="Voice Input">
-                            🎤
-                        </button>
+                    <button id="submit" class="generate-button">
+                        Generate Encounter
+                    </button>
+                </div>
+            </section>
+
+            <!-- Narrative Output -->
+            <section class="card narrative-card">
+                <header class="card-header">
+                    <h2 class="card-title">Narrative</h2>
+                    <button class="copy-button" onclick="copyToClipboard()" title="Copy to clipboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </header>
+                
+                <div class="card-content">
+                    <div id="output" class="narrative-output">
+                        <div class="placeholder">
+                            <p>Your encounter narrative will appear here</p>
+                        </div>
                     </div>
-
-                    <button id="submit" class="btn btn-primary">Generate Encounter</button>
                 </div>
-            </div>
-
-            <div class="output-card">
-                <h2 class="section-title">Encounter Narrative</h2>
-                <div id="output" class="output-text">
-                    Your epic encounter description will appear here...
-                </div>
-            </div>
+            </section>
         </main>
     </div>
 

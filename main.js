@@ -16,7 +16,9 @@ const estadoPartida = {
         { nombre: "Rayo Escarcha", bonificacionAtaque: 5, dadosDano: "1d8" },
         { nombre: "Misil Mágico", bonificacionAtaque: 0, dadosDano: "3d4 + 3" }
       ],
-      armas: [] // en caso de que tenga una daga, por ejemplo
+
+      armas: [], // en caso de que tenga una daga, por ejemplo
+      imagen: "/images/ivor.png"
     },
     {
       nombre: "Bofur Romperroca",
@@ -27,7 +29,8 @@ const estadoPartida = {
         { nombre: "Hacha Enana", bonificacionAtaque: 6, dadosDano: "2d6 + 2" },
         { nombre: "Espada corta", bonificacionAtaque: 5, dadosDano: "1d6 + 3" }
       ],
-      hechizos: []
+      hechizos: [],
+      imagen: "/images/bofur.png"
     },
     {
       nombre: "Erevan Mindartis",
@@ -38,7 +41,8 @@ const estadoPartida = {
         { nombre: "Arco Largo", bonificacionAtaque: 4, dadosDano: "1d8 + 2" },
         { nombre: "Espada larga", bonificacionAtaque: 5, dadosDano: "1d8 + 3" }
       ],
-      hechizos: []
+      hechizos: [],
+      imagen: "/images/erevan.png"
     }
   ],
   enemigos: [
@@ -52,6 +56,15 @@ const estadoPartida = {
 // Llenar selectores iniciales
 window.onload = () => {
   const personajeSelect = document.getElementById("personaje");
+  const enemigoSelect = document.getElementById("enemigo");
+
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "Select Character";
+    defaultOption.selected = true;
+    defaultOption.disabled = true;
+    personajeSelect.appendChild(defaultOption);
+
   estadoPartida.jugadores.forEach(j => {
     const option = document.createElement("option");
     option.value = j.nombre;
@@ -59,21 +72,43 @@ window.onload = () => {
     personajeSelect.appendChild(option);
   });
 
-  const enemigoSelect = document.getElementById("enemigo");
   estadoPartida.enemigos.forEach(e => {
     const option = document.createElement("option");
     option.value = e.nombre;
     option.textContent = e.nombre;
     enemigoSelect.appendChild(option);
   });
+
+  // Aquí se asigna el evento y se ejecuta de inmediato
+  personajeSelect.onchange = actualizarDatos;
+  personajeSelect.dispatchEvent(new Event("change")); // Fuerza primera carga
 };
 
-function actualizarArmas() {
-  const armaSelect = document.getElementById("arma");
-  armaSelect.innerHTML = ""; // Limpiar
 
-  const nombreSeleccionado = document.getElementById("personaje").value;
+function actualizarDatos() {
+  const selectorPersonaje = document.getElementById("personaje");
+  const armaSelect = document.getElementById("arma");
+  const imagenPersonaje = document.getElementById("imagen-personaje");
+  const clasePersonaje = document.getElementById("clase-personaje");
+  const nivelPersonaje = document.getElementById("nivel-personaje");
+  const hpPersonaje = document.getElementById('hp-personaje');
+
+  const nombreSeleccionado = selectorPersonaje.value;
+
+  // Si no se ha seleccionado ningún personaje
+  if (!nombreSeleccionado) {
+    armaSelect.innerHTML = "";
+    imagenPersonaje.src = "/images/placeholder.png";
+    imagenPersonaje.alt = "Sin personaje seleccionado";
+    clasePersonaje.textContent = "-";
+    nivelPersonaje.textContent = "-";
+    hpPersonaje.textContent = "-";
+    return;
+  }
+
   const jugador = estadoPartida.jugadores.find(j => j.nombre === nombreSeleccionado);
+
+  armaSelect.innerHTML = "";
 
   const opciones = [
     ...(jugador.armas || []),
@@ -86,7 +121,14 @@ function actualizarArmas() {
     option.textContent = obj.nombre;
     armaSelect.appendChild(option);
   });
+
+  imagenPersonaje.src = jugador.imagen;
+  imagenPersonaje.alt = `Token de ${jugador.nombre}`;
+  clasePersonaje.textContent = jugador.clase;
+  nivelPersonaje.textContent = jugador.nivel;
+  hpPersonaje.textContent = jugador.hp;
 }
+
 
 
 
