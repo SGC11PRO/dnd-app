@@ -1,4 +1,4 @@
-![[temp.png]]
+![Real Screenshot](temp.png)
 
 # 🧙‍♂️ D&D Combat Narrator – Voice-Driven Assistant for Dungeon Masters
 
