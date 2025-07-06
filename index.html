@@ -1,0 +1,33 @@
+<html>
+<body>
+    <label for="personaje">Selecciona tu personaje:</label>
+    <select id="personaje" onchange="actualizarArmas()">
+
+    </select>
+
+    <br><br>
+
+    <label for="arma">Selecciona el arma/hechizo:</label>
+    <select id="arma"></select>
+
+    <label for="enemigo">Selecciona al enemigo objetivo:</label>
+    <select id="enemigo"></select>
+
+
+    <label for="ataque">Resultado del ataque (d20 + bonificación):</label>
+    <input id="ataque" type="number"><br><br>
+
+    <label for="dano">Daño total:</label>
+    <input id="dano" type="number"><br><br>
+
+    <button onclick="empezarEscucha()">Escuchar</button>
+    <input type="text" id="input">
+    <button id="submit">Enviar</button>
+    <p id="output"></p>
+
+
+    <script src="https://js.puter.com/v2/"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
