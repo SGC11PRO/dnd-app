@@ -1,33 +1,81 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Encounter Narrator</title>
+    <link rel="stylesheet" href="globals.css">
+</head>
+
 <body>
-    <label for="personaje">Selecciona tu personaje:</label>
-    <select id="personaje" onchange="actualizarArmas()">
+    <div class="container">
+        <header class="header">
+            <h1 class="title">D&D Encounter Narrator</h1>
+            <p class="subtitle">Let AI bring your combat to life</p>
+        </header>
 
-    </select>
+        <main class="main-content">
+            <div class="form-card">
+                <div class="form-section">
+                    <h2 class="section-title">Character Setup</h2>
+                    
+                    <div class="form-group">
+                        <label for="personaje" class="form-label">Character</label>
+                        <select id="personaje" class="form-select" onchange="actualizarArmas()">
+                        </select>
+                    </div>
 
-    <br><br>
+                    <div class="form-group">
+                        <label for="arma" class="form-label">Weapon/Spell</label>
+                        <select id="arma" class="form-select"></select>
+                    </div>
 
-    <label for="arma">Selecciona el arma/hechizo:</label>
-    <select id="arma"></select>
+                    <div class="form-group">
+                        <label for="enemigo" class="form-label">Target Enemy</label>
+                        <select id="enemigo" class="form-select"></select>
+                    </div>
+                </div>
 
-    <label for="enemigo">Selecciona al enemigo objetivo:</label>
-    <select id="enemigo"></select>
+                <div class="form-section">
+                    <h2 class="section-title">Roll Results</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ataque" class="form-label">Attack Roll</label>
+                            <input id="ataque" type="number" class="form-input" placeholder="d20 + modifier">
+                        </div>
 
+                        <div class="form-group">
+                            <label for="dano" class="form-label">Damage</label>
+                            <input id="dano" type="number" class="form-input" placeholder="Total damage">
+                        </div>
+                    </div>
+                </div>
 
-    <label for="ataque">Resultado del ataque (d20 + bonificación):</label>
-    <input id="ataque" type="number"><br><br>
+                <div class="form-section">
+                    <h2 class="section-title">Action Description</h2>
+                    
+                    <div class="input-group">
+                        <input type="text" id="input" class="form-input" placeholder="Describe your action...">
+                        <button onclick="empezarEscucha()" class="btn btn-secondary" title="Voice Input">
+                            🎤
+                        </button>
+                    </div>
 
-    <label for="dano">Daño total:</label>
-    <input id="dano" type="number"><br><br>
+                    <button id="submit" class="btn btn-primary">Generate Encounter</button>
+                </div>
+            </div>
 
-    <button onclick="empezarEscucha()">Escuchar</button>
-    <input type="text" id="input">
-    <button id="submit">Enviar</button>
-    <p id="output"></p>
-
+            <div class="output-card">
+                <h2 class="section-title">Encounter Narrative</h2>
+                <div id="output" class="output-text">
+                    Your epic encounter description will appear here...
+                </div>
+            </div>
+        </main>
+    </div>
 
     <script src="https://js.puter.com/v2/"></script>
     <script src="main.js"></script>
-
 </body>
 </html>

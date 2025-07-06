@@ -126,7 +126,8 @@ function PrintResponse (textoUsuario)
     Enemigo objetivo: ${enemigoSeleccionado}
     Otros enemigos: ${JSON.stringify(enemigos.filter(e => e.nombre !== enemigoSeleccionado), null, 2)}
 
-    El jugador ha dicho: "${textoUsuario}"
+    El jugador ha especificado lo que va a hacer: "${input.value}"
+    El jugador ha dicho : "${textoUsuario}"
 
     Este es el resultado de su acción:
     - Tirada de ataque: ${tiradaAtaque}
@@ -144,10 +145,11 @@ function PrintResponse (textoUsuario)
 
     `;
 
+    console.log(input.value)
+
 
     puter.ai.chat(contextMessage)
         .then(response => {
             output.textContent = response;
-
-x        });
+    });    
 }
