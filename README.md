@@ -1,5 +1,7 @@
 ![Real Screenshot](temp2.png)
 
+> Life demo at : https://aiencounters.netlify.app
+---
 # 🧙‍♂️ D&D Combat Narrator – Voice-Driven Assistant for Dungeon Masters
 
 This project is an interactive, voice-enabled web tool that helps narrate epic combat scenes in a Dungeons & Dragons (D&D) campaign. It allows the DM (or player) to choose a character, weapon/spell, enemy, and enter dice rolls manually to generate immersive narrative responses using AI.
